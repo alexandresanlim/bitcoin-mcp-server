@@ -1,14 +1,9 @@
-# MCP Server Example
+# Bitoin (BTC) MCP Server
 
 This repository contains an implementation of a Model Context Protocol (MCP) server in Node.js/TypeScript, providing tools to obtain Bitcoin information using external APIs.
 
 ## Features
 
-- **get-recommended-fees**: Returns recommended Bitcoin transaction fees.
-- **get-prices**: Returns Bitcoin prices in various currencies.
-- **get-difficulty-adjustment**: Returns the current Bitcoin difficulty adjustment data.
-- Input validation using [Zod](https://github.com/colinhacks/zod).
-- Integration with external APIs using `fetch` or `axios` (infrastructure layer).
 - Communication via _stdio_ using the MCP protocol (`@modelcontextprotocol/sdk`).
 
 ## Architecture
