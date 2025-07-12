@@ -44,7 +44,7 @@ build/                     # Compiled JavaScript code
 ## Installation
 
 ```bash
-git clone <REPOSITORY_URL>
+git clone https://github.com/alexandresanlim/btc-mcp-server.git
 cd btc-mcp-server
 npm install
 npm run build
