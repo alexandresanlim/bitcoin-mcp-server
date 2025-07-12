@@ -1,4 +1,4 @@
-# Bitoin (BTC) MCP Server
+# Bitcoin (BTC) MCP Server
 
 This repository contains an implementation of a Model Context Protocol (MCP) server in Node.js/TypeScript, providing tools to obtain Bitcoin information using external APIs.
 
