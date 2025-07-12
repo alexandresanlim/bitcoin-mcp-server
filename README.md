@@ -58,11 +58,11 @@ After building, you can run the server directly:
 node build/main.js
 ```
 
-Or, if registered as a binary (`weather`):
+Or, if registered as a binary (`btc`):
 
 ```bash
 npm link
-weather
+btc
 ```
 
 The server will start on standard output (_stdio_) and wait for MCP requests.
