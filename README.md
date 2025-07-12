@@ -73,6 +73,21 @@ The server will start on standard output (_stdio_) and wait for MCP requests.
 - **get-prices**: Get Bitcoin prices in various currencies.
 - **get-difficulty-adjustment**: Get current Bitcoin difficulty adjustment data.
 
+## Integration with Claude Client
+
+To use this MCP server as a tool provider in the [Claude client](https://claude.ai), add the following configuration to your Claude client settings:
+
+```json
+"btc-server": {
+    "command": "node",
+    "args": [
+        "{your path project}/btc-mcp-server/build/main.js"
+    ]
+},
+```
+
+- After configuration, Claude will be able to call the available tools exposed by this server.
+
 ## Contributing
 
-Pull requests are welcome! Feel free to open issues and discuss improvements.
+Pull requests are welcome! Feel free to open issues
