@@ -51,8 +51,8 @@ src/
 ## Getting Started
 
 ```bash
-git clone https://github.com/alexandresanlim/btc-mcp-server.git
-cd btc-mcp-server
+git clone https://github.com/alexandresanlim/mcp-server-ddd-sample.git
+cd mcp-server-ddd-sample
 npm install
 npm run build
 ```
@@ -86,7 +86,7 @@ To use this MCP server as a tool provider in a client (e.g., Claude client), add
 "btc-server": {
     "command": "node",
     "args": [
-        "{your path project}/btc-mcp-server/build/main.js"
+        "{your path project}/mcp-server-ddd-sample/build/main.js"
     ]
 },
 ```
@@ -94,3 +94,7 @@ To use this MCP server as a tool provider in a client (e.g., Claude client), add
 ## Contributing
 
 Pull requests are welcome! Feel free to open issues or suggest improvements for this sample repository.
+
+## Project URL
+
+[https://github.com/alexandresanlim/mcp-server-ddd-sample](https://github.com/alexandresanlim/mcp-server-ddd-sample)
