@@ -1,43 +1,44 @@
+#!/usr/bin/env node
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 
-import { GeneralService } from "./application/services/GeneralService.js";
-import { FeesService } from "./application/services/FeesService.js";
-import { GeneralRequestService } from "./infrastructure/services/requests/GeneralRequestService.js";
-import { FeesRequestService } from "./infrastructure/services/requests/FeesRequestService.js";
 import { MempoolApiClientService } from "./infrastructure/services/clients/MempoolApiClientService.js";
-import { GeneralToolsController } from "./interface/controllers/GeneralToolsController.js";
-import { FeesToolsController } from "./interface/controllers/FeesToolsController.js";
+import {
+  FeesRequestService,
+  BlockRequestService,
+} from "./infrastructure/services/requests/index.js";
+import { FeesService, BlockService } from "./application/services/index.js";
+import {
+  FeesToolsController,
+  PingToolsController,
+  BlockToolsController,
+} from "./interface/controllers/index.js";
+
+const mempoolApiClientService = new MempoolApiClientService();
+
+const feesRequestService = new FeesRequestService(mempoolApiClientService);
+const blockRequestService = new BlockRequestService(mempoolApiClientService);
+
+const feesService = new FeesService(feesRequestService);
+const blockService = new BlockService(blockRequestService);
 
 async function main() {
   const server = new McpServer({
-    name: "btc",
+    name: "bitcoin-mcp-service",
     version: "1.0.0",
-    capabilities: {
-      resources: {},
-      tools: {},
-    },
   });
 
-  const mempoolApiClientService = new MempoolApiClientService();
-
-  const generalRequestService = new GeneralRequestService(
-    mempoolApiClientService
-  );
-  const feesRequestService = new FeesRequestService(mempoolApiClientService);
-
-  const generalService = new GeneralService(generalRequestService);
-  const feesService = new FeesService(feesRequestService);
-
-  new GeneralToolsController(server, generalService);
-  new FeesToolsController(server, feesService);
-
   const transport = new StdioServerTransport();
+
+  new FeesToolsController(server, feesService);
+  new PingToolsController(server);
+  new BlockToolsController(server, blockService);
+
   await server.connect(transport);
-  console.error("Bitcoin MCP Server running on stdio");
+  process.stderr.write(`Bitcoin MCP Server running on stdio`);
 }
 
 main().catch((error) => {
-  console.error("Fatal error in main():", error);
+  process.stderr.write(`Fatal error in main():`, error);
   process.exit(1);
 });
