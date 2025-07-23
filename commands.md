@@ -8,6 +8,17 @@ npm run server
 
 ```
 
+## Publish as a NPM package
+
+- First, put a name on package.json file and follow it:
+
+```bash
+
+npm login
+npm publish
+
+```
+
 ## Debug server
 
 ```bash
