@@ -14,7 +14,7 @@ npm run server
 
 npx @modelcontextprotocol/inspector node main.js
 npx @modelcontextprotocol/inspector .../path/main.js args...
-npx bitcoin-mcp-server --help
+npx mcp-server-ddd-sample --help
 
 ```
 

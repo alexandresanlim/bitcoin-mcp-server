@@ -24,7 +24,7 @@ const blockService = new BlockService(blockRequestService);
 
 async function main() {
   const server = new McpServer({
-    name: "bitcoin-mcp-service",
+    name: "mcp-server-ddd-sample",
     version: "1.0.0",
   });
 
@@ -35,7 +35,7 @@ async function main() {
   new BlockToolsController(server, blockService);
 
   await server.connect(transport);
-  process.stderr.write(`Bitcoin MCP Server running on stdio`);
+  process.stderr.write(`MCP Server DDD sample is running on stdio`);
 }
 
 main().catch((error) => {
