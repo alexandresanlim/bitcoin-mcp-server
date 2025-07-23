@@ -1,47 +1,54 @@
-# Bitcoin (BTC) MCP Server
+# MCP Server DDD Sample
 
-This repository contains an implementation of a Model Context Protocol (MCP) server in Node.js/TypeScript, providing tools to obtain Bitcoin information using external APIs.
+This repository is a **sample implementation** of a Model Context Protocol (MCP) server in Node.js/TypeScript, designed to demonstrate a clean, layered architecture using Domain-Driven Design (DDD) principles. It provides tools to obtain Bitcoin-related information via external APIs.
 
-## Features
+## Key Points
 
-- Communication via _stdio_ using the MCP protocol (`@modelcontextprotocol/sdk`).
+- **Sample Project:** This codebase is intended as a reference for structuring MCP servers with DDD, not for production use.
+- **MCP Protocol:** Communicates via _stdio_ using the MCP protocol (`@modelcontextprotocol/sdk`).
+- **Layered DDD Architecture:** Clear separation of domain, application, infrastructure, and interface layers.
 
-## Architecture
-
-The project follows a layered architecture inspired by **Domain-Driven Design** (DDD):
-
-- **Domain** (`src/domain`):  
-  Definition of interfaces and types representing data structures (e.g., `IFeesRecommendedResponse`, `IPricesResponse`).
-
-- **Infrastructure** (`src/infrastructure`):  
-  Implementation of external services, such as `MempoolApiService`, responsible for making HTTP calls to external APIs.
-
-- **Application** (`src/application`):  
-  Contains business logic in services like `FeesService` and `GeneralService`, which process and format data from the infrastructure.
-
-- **Interface** (`src/interface`):  
-  Includes controllers (`FeesToolsController`, `GeneralToolsController`) that register tools in the MCP server, define validation schemas, and return results.
-
-- **Entry Point** (`src/main.ts`):  
-  Initializes the `McpServer`, configures the transport (`StdioServerTransport`), instantiates services and controllers, and starts listening on _stdio_.
-
-Folder structure:
+## Project Structure
 
 ```
 src/
-├── domain/
-│   └── models/           # Domain interfaces
-├── infrastructure/
-│   └── services/         # External API implementations
-├── application/
-│   └── services/         # Business logic and data formatting
-├── interface/
-│   └── controllers/      # MCP tool registration and validation
-└── main.ts               # Server entry point
-build/                     # Compiled JavaScript code
+├── domain/                  # Domain models and response interfaces
+│   └── models/
+│       └── responses/
+│           ├── block/
+│           │   └── IBlockResponse.ts
+│           └── fees/
+│               └── IFeesRecommendedResponse.ts
+├── infrastructure/          # External API clients and request services
+│   ├── interfaces/
+│   │   └── IApiClient.ts
+│   └── services/
+│       ├── clients/
+│       │   └── MempoolApiClientService.ts
+│       └── requests/
+│           ├── BlockRequestService.ts
+│           └── FeesRequestService.ts
+├── application/             # Business logic and helpers
+│   ├── services/
+│   │   ├── BlockService.ts
+│   │   └── FeesService.ts
+│   └── helpers/
+│       └── format.ts
+├── interface/               # Controllers (MCP tool registration)
+│   └── controllers/
+│       ├── base/
+│       │   └── BaseToolsController.ts
+│       ├── BlockToolsController.ts
+│       ├── FeesToolsController.ts
+│       ├── PingController.ts
+│       └── index.ts
+├── shared/                  # Shared types/parameters
+│   └── parameters/
+│       └── IBlockRequestParameter.ts
+└── main.ts                  # Application entry point
 ```
 
-## Installation
+## Getting Started
 
 ```bash
 git clone https://github.com/alexandresanlim/btc-mcp-server.git
@@ -58,24 +65,22 @@ After building, you can run the server directly:
 node build/main.js
 ```
 
-Or, if registered as a binary (`btc`):
+Or, if registered as a binary (for example, `mcp-server-ddd-sample`):
 
 ```bash
 npm link
-btc
+mcp-server-ddd-sample
 ```
 
 The server will start on standard output (_stdio_) and wait for MCP requests.
 
-## Available Tools
+## Example Tools (Sample)
 
 - **get-recommended-fees**: Get recommended Bitcoin transaction fees.
-- **get-prices**: Get Bitcoin prices in various currencies.
-- **get-difficulty-adjustment**: Get current Bitcoin difficulty adjustment data.
 
-## Integration with Claude Client
+## Integration Example
 
-To use this MCP server as a tool provider in the [Claude client](https://claude.ai), add the following configuration to your Claude client settings:
+To use this MCP server as a tool provider in a client (e.g., Claude client), add a configuration like:
 
 ```json
 "btc-server": {
@@ -86,8 +91,6 @@ To use this MCP server as a tool provider in the [Claude client](https://claude.
 },
 ```
 
-- After configuration, Claude will be able to call the available tools exposed by this server.
-
 ## Contributing
 
-Pull requests are welcome! Feel free to open issues
+Pull requests are welcome! Feel free to open issues or suggest improvements for this sample repository.
