@@ -1,63 +1,57 @@
-# MCP Server DDD Sample
+# 🚀 MCP Server DDD Template
 
-This repository is a **sample implementation** of a Model Context Protocol (MCP) server in Node.js/TypeScript, designed to demonstrate a clean, layered architecture using Domain-Driven Design (DDD) principles. It provides tools to obtain Bitcoin-related information via external APIs.
+This repository is a **template implementation** of a Model Context Protocol (MCP) server in Node.js/TypeScript, designed to demonstrate a clean, layered architecture using Domain-Driven Design (DDD) principles. It provides tools to obtain Bitcoin-related information via external APIs.
 
-## Key Points
+## ✨ Key Features
 
-- **Sample Project:** This codebase is intended as a reference for structuring MCP servers with DDD, not for production use.
-- **MCP Protocol:** Communicates via _stdio_ using the MCP protocol (`@modelcontextprotocol/sdk`).
-- **Layered DDD Architecture:** Clear separation of domain, application, infrastructure, and interface layers.
+- **🏗️ Template Project:** This codebase serves as a reference template for structuring MCP servers with DDD, ready for customization and production use.
+- **🔌 MCP Protocol:** Communicates via _stdio_ using the MCP protocol (`@modelcontextprotocol/sdk`).
+- **🏛️ Layered DDD Architecture:** Clear separation of domain, application, infrastructure, and interface layers.
+- **⚡ TypeScript:** Fully typed with modern TypeScript for better development experience.
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 src/
-├── domain/                  # Domain models and response interfaces
+├── domain/                  # 🏛️ Domain models and response interfaces
 │   └── models/
 │       └── responses/
-│           ├── block/
-│           │   └── IBlockResponse.ts
-│           └── fees/
-│               └── IFeesRecommendedResponse.ts
-├── infrastructure/          # External API clients and request services
+│           ├── ** interfaces responses **
+├── infrastructure/          # 🔌 External API clients and request services
 │   ├── interfaces/
 │   │   └── IApiClient.ts
 │   └── services/
 │       ├── clients/
-│       │   └── MempoolApiClientService.ts
+│       │   └── ** client api
 │       └── requests/
-│           ├── BlockRequestService.ts
-│           └── FeesRequestService.ts
-├── application/             # Business logic and helpers
+│           ├── ** requests services **
+├── application/             # ⚙️ Business logic and helpers
 │   ├── services/
-│   │   ├── BlockService.ts
-│   │   └── FeesService.ts
+│   │   ├── ** services implementation **
 │   └── helpers/
-│       └── format.ts
-├── interface/               # Controllers (MCP tool registration)
+│       └── ** helpers **
+├── interface/               # 🎮 Controllers (MCP tool registration)
 │   └── controllers/
 │       ├── base/
 │       │   └── BaseToolsController.ts
-│       ├── BlockToolsController.ts
-│       ├── FeesToolsController.ts
-│       ├── PingController.ts
+│       ├── **controllers to inteface**
 │       └── index.ts
-├── shared/                  # Shared types/parameters
+├── shared/                  # 🔗 Shared types/parameters
 │   └── parameters/
-│       └── IBlockRequestParameter.ts
-└── main.ts                  # Application entry point
+│       └── **interfaces parameters**
+└── main.ts                  # 🚀 Application entry point
 ```
 
-## Getting Started
+## 🚀 Getting Started
 
 ```bash
-git clone https://github.com/alexandresanlim/mcp-server-ddd-sample.git
-cd mcp-server-ddd-sample
+git clone https://github.com/alexandresanlim/mcp-server-ddd-template.git
+cd mcp-server-ddd-template
 npm install
 npm run build
 ```
 
-## Usage
+## 🎯 Usage
 
 After building, you can run the server directly:
 
@@ -65,54 +59,44 @@ After building, you can run the server directly:
 node build/main.js
 ```
 
-Or, if registered as a binary (for example, `mcp-server-ddd-sample`):
+Or, if registered as a binary (for example, `mcp-server-ddd-template`):
 
 ```bash
 npm link
-mcp-server-ddd-sample
+mcp-server-ddd-template
 ```
 
 The server will start on standard output (_stdio_) and wait for MCP requests.
 
-## Example Tools (Sample)
+## 🛠️ Available Tools in this sample
 
-- **get-recommended-fees**: Get recommended Bitcoin transaction fees.
+- **💰 get-recommended-fees**: Get recommended Bitcoin transaction fees from Mempool.space
+- **🔗 ping**: Simple health check endpoint
 
-## Integration Example
+## 🔗 Integration Example
 
 To use this MCP server as a tool provider in a client (e.g., Claude client), you can either reference a local build or use the published npm package.
 
-### Using Local Build Path
+### 📂 Using Local Build Path
 
 ```json
 "btc-server": {
     "command": "node",
     "args": [
-        "{your path project}/mcp-server-ddd-sample/build/main.js"
+        "{your project path}/mcp-server-ddd-template/build/main.js"
     ]
-},
+}
 ```
 
-### Using the Published NPM Package
 
-If the package is published to npm as `mcp-server-ddd-sample`, you can use `npx` to run it directly without cloning or building:
-
-```json
-"mcp-ddd-server-package": {
-    "command": "npx",
-    "args": [
-        "mcp-server-ddd-sample"
-    ]
-},
-```
 
 This allows you to always use the latest published version from npm.
 
-## Publishing to NPM
+## 📤 Publishing to NPM
 
 To publish this package to npm:
 
-1. Update the `name` field in your `package.json` to `mcp-server-ddd-sample` (or your preferred name).
+1. Update the `name` field in your `package.json` to `mcp-server-ddd-template` (or your preferred name).
 2. Run the following commands:
 
 ```bash
@@ -120,12 +104,43 @@ npm login
 npm publish --access public
 ```
 
-After publishing, users can run the server with `npx mcp-server-ddd-sample`.
+After publishing, users can run the server with `npx mcp-server-ddd-template`.
 
-## Contributing
+## 🛠️ Development
 
-Pull requests are welcome! Feel free to open issues or suggest improvements for this sample repository.
+### Build Commands
 
-## Project URL
+```bash
+# Build for Unix/Linux/macOS
+npm run build
 
-[https://github.com/alexandresanlim/mcp-server-ddd-sample](https://github.com/alexandresanlim/mcp-server-ddd-sample)
+# Build for Windows
+npm run build:windows
+
+# Run the server
+npm run server
+```
+
+### Dependencies
+
+- **@modelcontextprotocol/sdk**: MCP protocol implementation
+- **zod**: Runtime type validation
+- **typescript**: Type safety and compilation
+
+## 🤝 Contributing
+
+Pull requests are welcome! Feel free to open issues or suggest improvements for this template repository.
+
+## 📄 License
+
+This project is licensed under the ISC License.
+
+## 🔗 Project Links
+
+- **🌐 Repository**: [https://github.com/alexandresanlim/mcp-server-ddd-template](https://github.com/alexandresanlim/mcp-server-ddd-template)
+- **🐛 Issues**: [https://github.com/alexandresanlim/mcp-server-ddd-template/issues](https://github.com/alexandresanlim/mcp-server-ddd-template/issues)
+- **📦 NPM Package**: [mcp-server-ddd-template](https://www.npmjs.com/package/mcp-server-ddd-template)
+
+---
+
+⭐ **Star this repository if you find it helpful!**
