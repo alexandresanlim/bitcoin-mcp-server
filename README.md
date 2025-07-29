@@ -88,24 +88,6 @@ To use this MCP server as a tool provider in a client (e.g., Claude client), you
 }
 ```
 
-
-
-This allows you to always use the latest published version from npm.
-
-## 📤 Publishing to NPM
-
-To publish this package to npm:
-
-1. Update the `name` field in your `package.json` to `mcp-server-ddd-template` (or your preferred name).
-2. Run the following commands:
-
-```bash
-npm login
-npm publish --access public
-```
-
-After publishing, users can run the server with `npx mcp-server-ddd-template`.
-
 ## 🛠️ Development
 
 ### Build Commands
@@ -130,17 +112,5 @@ npm run server
 ## 🤝 Contributing
 
 Pull requests are welcome! Feel free to open issues or suggest improvements for this template repository.
-
-## 📄 License
-
-This project is licensed under the ISC License.
-
-## 🔗 Project Links
-
-- **🌐 Repository**: [https://github.com/alexandresanlim/mcp-server-ddd-template](https://github.com/alexandresanlim/mcp-server-ddd-template)
-- **🐛 Issues**: [https://github.com/alexandresanlim/mcp-server-ddd-template/issues](https://github.com/alexandresanlim/mcp-server-ddd-template/issues)
-- **📦 NPM Package**: [mcp-server-ddd-template](https://www.npmjs.com/package/mcp-server-ddd-template)
-
----
 
 ⭐ **Star this repository if you find it helpful!**
